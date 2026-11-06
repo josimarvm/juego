@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Juegos educativos para practicar sumas, restas, multiplicaciones, números, vocales y consonantes.">
+  <meta name="theme-color" content="#fff8e1">
+  <title>Aprende Jugando | Juegos Educativos</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <!-- Barra superior: solo visible en móvil y tablet -->
+    <header class="barra-movil">
+      <span class="barra-movil__logo" aria-hidden="true">ABC</span>
+      <span class="barra-movil__texto">Aprende <strong>Jugando</strong></span>
+      <button class="barra-movil__menu" type="button" id="btnMenu" aria-controls="menuLateral" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+          <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+        </svg>
+        <span>Juegos</span>
+      </button>
+    </header>
+
+    <aside class="menu-lateral" id="menuLateral">
+      <button class="menu-lateral__cerrar" type="button" id="btnCerrarMenu" aria-label="Cerrar menú">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+          <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <div class="marca" aria-hidden="true">
+        <span class="marca__icono">ABC</span>
+        <span class="marca__texto">
+          <strong>Aprende</strong>
+          <span>Jugando</span>
+        </span>
+      </div>
+
+      <nav class="menu-lateral__nav" aria-label="Menú de juegos">
+        <button class="boton-menu boton-menu--inicio" type="button" data-vista="inicio" aria-label="Inicio" aria-current="page">
+          <span class="sr-only">Inicio</span>
+        </button>
+        <button class="boton-menu boton-menu--numeros" type="button" data-vista="numeros" aria-label="Adivina el número">
+          <span class="sr-only">Adivina el número</span>
+        </button>
+        <button class="boton-menu boton-menu--sumar" type="button" data-vista="suma" aria-label="Sumar">
+          <span class="sr-only">Sumar</span>
+        </button>
+        <button class="boton-menu boton-menu--restar" type="button" data-vista="resta" aria-label="Restar">
+          <span class="sr-only">Restar</span>
+        </button>
+        <button class="boton-menu boton-menu--multiplicar" type="button" data-vista="multiplicacion" aria-label="Multiplicar">
+          <span class="sr-only">Multiplicar</span>
+        </button>
+        <button class="boton-menu boton-menu--vocales" type="button" data-vista="vocales" aria-label="Vocales">
+          <span class="sr-only">Vocales</span>
+        </button>
+        <button class="boton-menu boton-menu--consonantes" type="button" data-vista="consonantes" aria-label="Consonantes">
+          <span class="sr-only">Consonantes</span>
+        </button>
+        <button class="boton-menu boton-menu--salir" type="button" id="btnSalir" aria-label="Salir">
+          <span class="sr-only">Salir</span>
+        </button>
+      </nav>
+    </aside>
+
+    <div class="menu-velo" id="menuVelo" aria-hidden="true" hidden></div>
+
+    <main class="area-juego">
+      <!-- Inicio -->
+      <section class="vista panel-inicio" id="panelInicio" data-vista-panel="inicio" aria-labelledby="tituloInicio">
+        <h1 class="sr-only" id="tituloInicio">Aprende Jugando: juegos educativos</h1>
+        <p class="panel-inicio__pista">Elige un juego y empieza a practicar</p>
+      </section>
+
+      <!-- Adivina el número -->
+      <section class="vista panel-juego" id="panelAdivinaNumero" data-vista-panel="numeros" aria-labelledby="tituloNumeros" hidden>
+        <h2 class="panel-juego__titulo" id="tituloNumeros">ADIVINA EL NÚMERO</h2>
+        <p class="panel-juego__pregunta" data-rol="pregunta">&iquest;Cu&aacute;ntos animales hay?</p>
+        <div class="panel-juego__escena panel-juego__escena--unica">
+          <div class="panel-animales" data-rol="panel1"></div>
+        </div>
+        <p class="panel-juego__feedback" data-rol="feedback" role="status" aria-live="polite"></p>
+        <div class="panel-juego__opciones" role="group" aria-label="Opciones de respuesta">
+          <button class="boton-respuesta boton-respuesta--1" type="button" data-opcion="0">1</button>
+          <button class="boton-respuesta boton-respuesta--2" type="button" data-opcion="1">2</button>
+          <button class="boton-respuesta boton-respuesta--3" type="button" data-opcion="2">3</button>
+          <button class="boton-respuesta boton-respuesta--4" type="button" data-opcion="3">4</button>
+        </div>
+        <p class="panel-juego__aciertos" data-rol="aciertos">Aciertos: 0</p>
+      </section>
+
+      <!-- Sumas -->
+      <section class="vista panel-juego" id="panelSuma" data-vista-panel="suma" aria-labelledby="tituloSuma" hidden>
+        <h2 class="panel-juego__titulo" id="tituloSuma">SUMAS</h2>
+        <p class="panel-juego__pregunta" data-rol="pregunta">1 + 1 = ?</p>
+        <div class="panel-juego__escena">
+          <div class="panel-animales" data-rol="panel1"></div>
+          <img class="panel-juego__operador" src="Recursos/imagenes/fondo/suma.png" alt="" width="64" height="64">
+          <div class="panel-animales" data-rol="panel2"></div>
+        </div>
+        <p class="panel-juego__feedback" data-rol="feedback" role="status" aria-live="polite"></p>
+        <div class="panel-juego__opciones" role="group" aria-label="Opciones de respuesta">
+          <button class="boton-respuesta boton-respuesta--1" type="button" data-opcion="0">1</button>
+          <button class="boton-respuesta boton-respuesta--2" type="button" data-opcion="1">2</button>
+          <button class="boton-respuesta boton-respuesta--3" type="button" data-opcion="2">3</button>
+          <button class="boton-respuesta boton-respuesta--4" type="button" data-opcion="3">4</button>
+        </div>
+        <p class="panel-juego__aciertos" data-rol="aciertos">Aciertos: 0</p>
+      </section>
+
+      <!-- Restas -->
+      <section class="vista panel-juego" id="panelResta" data-vista-panel="resta" aria-labelledby="tituloResta" hidden>
+        <h2 class="panel-juego__titulo" id="tituloResta">RESTAS</h2>
+        <p class="panel-juego__pregunta" data-rol="pregunta">2 - 1 = ?</p>
+        <div class="panel-juego__escena">
+          <div class="panel-animales" data-rol="panel1"></div>
+          <img class="panel-juego__operador" src="Recursos/imagenes/fondo/resta.png" alt="" width="64" height="64">
+          <div class="panel-animales" data-rol="panel2"></div>
+        </div>
+        <p class="panel-juego__feedback" data-rol="feedback" role="status" aria-live="polite"></p>
+        <div class="panel-juego__opciones" role="group" aria-label="Opciones de respuesta">
+          <button class="boton-respuesta boton-respuesta--1" type="button" data-opcion="0">1</button>
+          <button class="boton-respuesta boton-respuesta--2" type="button" data-opcion="1">2</button>
+          <button class="boton-respuesta boton-respuesta--3" type="button" data-opcion="2">3</button>
+          <button class="boton-respuesta boton-respuesta--4" type="button" data-opcion="3">4</button>
+        </div>
+        <p class="panel-juego__aciertos" data-rol="aciertos">Aciertos: 0</p>
+      </section>
+
+      <!-- Multiplicaciones -->
+      <section class="vista panel-juego" id="panelMultiplicacion" data-vista-panel="multiplicacion" aria-labelledby="tituloMultiplicacion" hidden>
+        <h2 class="panel-juego__titulo" id="tituloMultiplicacion">MULTIPLICACIONES</h2>
+        <p class="panel-juego__pregunta" data-rol="pregunta">2 &times; 2 = ?</p>
+        <div class="panel-juego__escena">
+          <div class="panel-animales" data-rol="panel1"></div>
+          <img class="panel-juego__operador" src="Recursos/imagenes/fondo/multiplicacion.png" alt="" width="64" height="64">
+          <div class="panel-animales" data-rol="panel2"></div>
+        </div>
+        <p class="panel-juego__feedback" data-rol="feedback" role="status" aria-live="polite"></p>
+        <div class="panel-juego__opciones" role="group" aria-label="Opciones de respuesta">
+          <button class="boton-respuesta boton-respuesta--1" type="button" data-opcion="0">1</button>
+          <button class="boton-respuesta boton-respuesta--2" type="button" data-opcion="1">2</button>
+          <button class="boton-respuesta boton-respuesta--3" type="button" data-opcion="2">3</button>
+          <button class="boton-respuesta boton-respuesta--4" type="button" data-opcion="3">4</button>
+        </div>
+        <p class="panel-juego__aciertos" data-rol="aciertos">Aciertos: 0</p>
+      </section>
+
+      <!-- Vocales -->
+      <section class="vista panel-juego" id="panelVocal" data-vista-panel="vocales" aria-labelledby="tituloVocales" hidden>
+        <h2 class="panel-juego__titulo" id="tituloVocales">&iquest;CU&Aacute;NTAS VOCALES HAY?</h2>
+        <div class="panel-letras" data-rol="letras" role="img" aria-label="Cuadrícula de 16 letras"></div>
+        <p class="panel-juego__feedback" data-rol="feedback" role="status" aria-live="polite"></p>
+        <div class="panel-juego__opciones" role="group" aria-label="Opciones de respuesta">
+          <button class="boton-respuesta boton-respuesta--1" type="button" data-opcion="0">1</button>
+          <button class="boton-respuesta boton-respuesta--2" type="button" data-opcion="1">2</button>
+          <button class="boton-respuesta boton-respuesta--3" type="button" data-opcion="2">3</button>
+          <button class="boton-respuesta boton-respuesta--4" type="button" data-opcion="3">4</button>
+        </div>
+        <p class="panel-juego__aciertos" data-rol="aciertos">Aciertos: 0</p>
+      </section>
+
+      <!-- Consonantes -->
+      <section class="vista panel-juego" id="panelConsonante" data-vista-panel="consonantes" aria-labelledby="tituloConsonantes" hidden>
+        <h2 class="panel-juego__titulo" id="tituloConsonantes">&iquest;CU&Aacute;NTAS CONSONANTES HAY?</h2>
+        <div class="panel-letras" data-rol="letras" role="img" aria-label="Cuadrícula de 16 letras"></div>
+        <p class="panel-juego__feedback" data-rol="feedback" role="status" aria-live="polite"></p>
+        <div class="panel-juego__opciones" role="group" aria-label="Opciones de respuesta">
+          <button class="boton-respuesta boton-respuesta--1" type="button" data-opcion="0">1</button>
+          <button class="boton-respuesta boton-respuesta--2" type="button" data-opcion="1">2</button>
+          <button class="boton-respuesta boton-respuesta--3" type="button" data-opcion="2">3</button>
+          <button class="boton-respuesta boton-respuesta--4" type="button" data-opcion="3">4</button>
+        </div>
+        <p class="panel-juego__aciertos" data-rol="aciertos">Aciertos: 0</p>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="modalSalir" hidden>
+    <div class="modal__caja" role="dialog" aria-modal="true" aria-labelledby="tituloSalida" aria-describedby="textoSalida">
+      <h2 class="modal__titulo" id="tituloSalida">&iexcl;Gracias por jugar!</h2>
+      <p class="modal__texto" id="textoSalida">&iquest;Quieres volver al inicio o cerrar la pesta&ntilde;a?</p>
+      <div class="modal__acciones">
+        <button class="boton-accion boton-accion--principal" type="button" id="btnVolverInicio">Volver al inicio</button>
+        <button class="boton-accion" type="button" id="btnCerrarPestana">Cerrar pesta&ntilde;a</button>
+      </div>
+      <p class="modal__nota" id="notaCerrar" hidden>El navegador no permite cerrar esta pesta&ntilde;a autom&aacute;ticamente. Puedes cerrarla manualmente.</p>
+    </div>
+  </div>
+
+  <!-- Capa Controlador: lógica del juego, sin acceso al DOM -->
+  <script src="js/Controlador/Aleatorio.js"></script>
+  <script src="js/Controlador/Mensajes.js"></script>
+  <script src="js/Controlador/Letras.js"></script>
+  <script src="js/Controlador/Numero.js"></script>
+  <script src="js/Controlador/Suma.js"></script>
+  <script src="js/Controlador/Resta.js"></script>
+  <script src="js/Controlador/Multiplicacion.js"></script>
+
+  <!-- Capa Vista: componentes que dibujan y reaccionan a los eventos -->
+  <script src="js/Vista/Rutas.js"></script>
+  <script src="js/Vista/PanelNumero.js"></script>
+  <script src="js/Vista/PanelLetras.js"></script>
+  <script src="js/Vista/PanelJuegoBase.js"></script>
+  <script src="js/Vista/PanelInicio.js"></script>
+  <script src="js/Vista/PanelAdivinaNumero.js"></script>
+  <script src="js/Vista/PanelSuma.js"></script>
+  <script src="js/Vista/PanelResta.js"></script>
+  <script src="js/Vista/PanelMultiplicacion.js"></script>
+  <script src="js/Vista/PanelVocal.js"></script>
+  <script src="js/Vista/PanelConsonante.js"></script>
+  <script src="js/Vista/Principal.js"></script>
+
+  <!-- Punto de entrada -->
+  <script src="js/main.js"></script>
+</body>
+</html>
